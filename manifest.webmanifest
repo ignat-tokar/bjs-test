@@ -9,5 +9,7 @@
           "type": "image/png"
       }
   ],
+  "orientation": "portrait",
+  "start_url": "/bjs-test/index.html",
   "display": "fullscreen"
 }
