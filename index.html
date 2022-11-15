@@ -53,9 +53,9 @@
     light.intensity = 0.5;
     camera.setTarget(BABYLON.Vector3.Zero());
     // --- ТЕНИ ---
-    // let shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
-    // shadowGenerator.getShadowMap().renderList.push(ball);    
-    // platform.receiveShadows = true;      
+    let shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
+    shadowGenerator.getShadowMap().renderList.push(ball);    
+    platform.receiveShadows = true;      
 
     // ФУНКЦИИ
     const lifeCycle = (dt) => {
