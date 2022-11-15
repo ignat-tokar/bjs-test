@@ -39,6 +39,9 @@
     let ball = BABYLON.MeshBuilder.CreateSphere('sphere', {diameter: 1, segments: 32}, scene);
     let boxMaterial = new BABYLON.StandardMaterial('material', scene);
     let state = IDLE;
+    // --- ТЕНИ ---
+    let shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
+    shadowGenerator.getShadowMap().renderList.push(ball);    
 
     scene.clearColor = new BABYLON.Color3(0.4, 0.4, 0.4);
     // boxMaterial.emissiveColor = new BABYLON.Color3(0, 0.58, 0.86);
@@ -47,7 +50,8 @@
     for(let i = 0; i < 8; i++){
       let platform = BABYLON.MeshBuilder.CreateGround('ground', {width: 6, height: 6}, scene);
       platform.position.z = i*6;
-      platform.material = boxMaterial;      
+      platform.material = boxMaterial;  
+      platform.receiveShadows = true;     
     }
 
     let grass1 = new BABYLON.StandardMaterial("grass1", scene);
@@ -56,11 +60,7 @@
     ball.position.y = 0.5;
 
     light.intensity = 0.1;
-    camera.setTarget(BABYLON.Vector3.Zero());
-    // --- ТЕНИ ---
-    let shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
-    shadowGenerator.getShadowMap().renderList.push(ball);    
-    platform.receiveShadows = true;      
+    camera.setTarget(BABYLON.Vector3.Zero()); 
 
     // ФУНКЦИИ
     const lifeCycle = (dt) => {
